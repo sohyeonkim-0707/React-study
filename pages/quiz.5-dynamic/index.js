@@ -13,6 +13,7 @@ const CREATE_BOARD = gql`
         }
     `
 
+
 export default function StaticRoutingPage(){
     const router = useRouter()
     
@@ -23,42 +24,33 @@ export default function StaticRoutingPage(){
 
     const [createProduct] = useMutation(CREATE_BOARD)
     
-
+    //게시물 등록 버튼을 클릭했을때 실행되는 함수 안에서 라우터 객체 실행
     const callGraphqlApi = async () => {
-    try{
+        try{
             const result = await createProduct({ 
-                variables: {
-                    seller: mySeller, 
+                variables: {seller: mySeller, 
                     createProductInput:{
                         name: myProduct, 
                         detail: myDetail, 
-                        price: myPrice
-                    }
+                        price: myPrice}
                 } 
             })
-            console.log(result)
-            //console.log(result.data.createProduct._id) //id값 받아옴 > 여긴 성공 
-            console.log(result.data.createProduct.message) //id값 받아옴 > 여긴 성공 //
-            router.push(`quiz5-02-dynamic-routed-input/${result.data.createProduct.message}`)//여기 문제가 있는 것 같은데
+
+            //console.log(result)
+            console.log(result.data.createProduct._id) //id값 받아오는지 확인하는 코드
+            alert("게시물 등록에 성공했습니다.")
+            alert("상세페이지로 이동합니다.")
+            //router.push(`/quiz.5-dynamic/${result.data.createProduct._id}`)
 
         }catch(error){
             console.log(error.message)
-        }
-    }
-    const onChangeSeller = (event) =>{
-        setMySeller(event.target.value)
-    }
-    const onChangeProduct = (event) =>{
-        setMyProduct(event.target.value)
-    }
-    const onChangeTitle = (event) =>{
-        setMyDetail(event.target.value)
-    }
-    const onChangeContents = (event) =>{
-        setMyPrice(parseInt(event.target.value))
-        
+            }
         }
 
+    const onChangeSeller = (event) =>{setMySeller(event.target.value)}
+    const onChangeProduct = (event) =>{setMyProduct(event.target.value)}
+    const onChangeTitle = (event) =>{setMyDetail(event.target.value)}
+    const onChangeContents = (event) =>{setMyPrice(parseInt(event.target.value))}
 
     return(
         <div>
@@ -70,4 +62,3 @@ export default function StaticRoutingPage(){
         </div>
     )
 }
-

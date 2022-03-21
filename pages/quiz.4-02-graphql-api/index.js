@@ -10,11 +10,12 @@
 import { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
 
-
+//graphql 코드생성
 const CREATE_BOARD = gql`
-    mutation mymutation($seller:String, $createProductInput:CreateProductInput!){
+    mutation mymutation($aaa:String, $bbb:CreateProductInput!){
         createProduct(
-            seller:$seller, createProductInput:$createProductInput){
+            seller:$aaa, 
+            createProductInput:$bbb){
                 _id
                 number
                 message
@@ -29,20 +30,22 @@ export default function QuizGraphqlProductApiPage(){
     const [myPrice,setMyPrice] = useState("")
 
     const [createProduct] = useMutation(CREATE_BOARD)
-    
+    //위에서 만든 gql 변수/상수 를 이용해서 useMutation을 만들어줌 
 
     const callGraphqlApi = async () => {
-
+                    //await +서버에 요청하는 코드
         const result = await createProduct({ 
             variables: {
-                seller: mySeller, 
-                createProductInput:{
+                aaa: mySeller, 
+                bbb:{
                     name: myProduct, 
                     detail: myDetail, 
                     price: myPrice
                 }
             } 
         })
+        
+        //결과 찍어보기
         console.log(result)
     }
     const onChangeSeller = (event) =>{
