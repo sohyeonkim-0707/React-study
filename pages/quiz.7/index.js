@@ -14,7 +14,7 @@ const CREATE_BOARD = gql`
     `
 
 
-export default function StaticRoutingPage(){
+export default function MapProductPage(){
     const router = useRouter()
     
     const [mySeller,setMySeller] = useState("")
