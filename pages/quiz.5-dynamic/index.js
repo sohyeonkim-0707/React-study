@@ -37,6 +37,7 @@ export default function StaticRoutingPage(){
             })
 
             //console.log(result)
+            console.log(result)
             console.log(result.data.createProduct._id) //id값 받아오는지 확인하는 코드
             alert("게시물 등록에 성공했습니다.")
             alert("상세페이지로 이동합니다.")
