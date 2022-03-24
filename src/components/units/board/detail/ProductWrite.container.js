@@ -17,10 +17,7 @@ export default function ProductPage(props){
     const [createProduct] = useMutation(CREATE_PRODUCT)
     const [updateProduct] = useMutation(UPDATE_PRODUCT)
 
-
-    //상품 수정 업데이트
-    //수정하기일때만 실행되는 함수
-    //플레이그라운드 보기 
+    
     const onClickUpdate = async () => {
        await updateProduct({
         variables:{productId:router.query.productId,
@@ -30,9 +27,13 @@ export default function ProductPage(props){
                 price:myPrice
             }
         }
-      })
-        alert("상품 수정에 성공했습니다.!!!")
-      router.push(`/quiz.8/${router.query.productId}`)
+    })
+
+
+
+    
+    router.push(`/quiz.8/${router.query.productId}`)
+    alert("상품 수정에 성공했습니다.!!!")
     }
     
     
