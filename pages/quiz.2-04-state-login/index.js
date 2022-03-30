@@ -7,61 +7,60 @@
 // 조건3) 에러가 없는 입력에 해당하는 state는 에러를 제거(빈값으로 변경) 합니다.
 //04. 발생한 에러를 빨간색으로 입력창 하단에 표기해 주세요.
 
-import {useState} from 'react'
+import { useState } from "react";
 
 export default function SignupStatePage() {
+  const [email, setEmail] = useState(" ");
+  const [emailError, setEmailError] = useState(" ");
+  const [pwd1, setPwd1] = useState(" ");
+  const [pwd2, setPwd2] = useState(" ");
+  const [pwdError, setPwdError] = useState(" ");
 
-      const [email, setEmail] = useState(' ')
-      const [emailError, setEmailError] = useState(' ')
-      const [pwd1, setPwd1] = useState(' ')
-      const [pwd2, setPwd2] = useState(' ')
-      const [pwdError, setPwdError] = useState(' ')
-      
+  // event.target 특정 이벤트가 발생하는 태그를 가르킨다
+  // event.target.value 인풋태그에 입력되는 값을 의미한다.
+  // event.target.id
+  function onChangeEmail(event) {
+    const value = event.target.value;
+    setEmail(value);
+  }
 
-      function onChangeEmail(event){
-            const value = event.target.value
-            setEmail(value)
-      }
+  function onChangePwd1(event) {
+    const value = event.target.value;
+    setPwd1(value);
+  }
 
-      function onChangePwd1(event){
-            const value = event.target.value
-            setPwd1(value)
-      }
+  function onChangePwd2(event) {
+    const value = event.target.value;
+    setPwd2(value);
+  }
 
-      function onChangePwd2(event){
-            const value = event.target.value
-            setPwd2(value)
-      }
+  function GoJoin() {
+    if (email.includes("@") === false) {
+      setEmailError("이메일이 올바르지 않습니다!! @가 없음");
+    }
 
-      function GoJoin() {
+    if (pwd1 !== pwd2) {
+      setPwdError("비밀번호가 일치 하지 않습니다.");
+    }
 
-            if(email.includes("@") === false){
-                  setEmailError("이메일이 올바르지 않습니다!! @가 없음")
-            }
-            
-            if(pwd1 !== pwd2){
-                  setPwdError("비밀번호가 일치 하지 않습니다.")
-            }
+    if (email.includes("@") === true && pwd1 === pwd2) {
+      alert("가입축하");
+    }
+  }
 
-            if(email.includes("@") === true && pwd1 === pwd2){
-                  alert("가입축하")
-            }
-      
-      }
-
-      
-      return(
-            <div>
-                  
-                  이메일: <input type="email" onChange={onChangeEmail}/>
-                  <div style={{color:'red'}}>{emailError}</div>
-            
-                  비밀번호:<input type="password" onChange={onChangePwd1}/>
-                  비밀번호 확인:<input type="password"onChange={onChangePwd2}/>
-                  <div style={{color:'red'}}>{pwdError}</div>
-
-                  <button onClick={GoJoin}>가입하기</button>
-                  
-            </div>
-      )
+  return (
+    <div>
+      이메일: <input type="email" onChange={onChangeEmail} />
+      <br />
+      <div style={{ color: "red" }}>{emailError}</div>
+      비밀번호:
+      <input type="password" onChange={onChangePwd1} />
+      <br />
+      비밀번호 확인:
+      <input type="password" onChange={onChangePwd2} />
+      <br />
+      <div style={{ color: "red" }}>{pwdError}</div>
+      <button onClick={GoJoin}>가입하기</button>
+    </div>
+  );
 }

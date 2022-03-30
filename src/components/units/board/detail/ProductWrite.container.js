@@ -16,6 +16,7 @@ export default function ProductPage(props){
 
     const [createProduct] = useMutation(CREATE_PRODUCT)
     const [updateProduct] = useMutation(UPDATE_PRODUCT)
+    
 
     
     const onClickUpdate = async () => {
