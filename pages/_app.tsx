@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   const client = new ApolloClient({
     //새것을 하나 만들겠다.
     //기능설정내용
-    uri: "http://example.codebootcamp.co.kr/graphql",
+    uri: "http://backend06.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),
   });
 
