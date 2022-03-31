@@ -18,3 +18,5 @@ export const Page = styled.span`
   cursor: pointer;
   color: ${(props: IProps) => (props.current === true ? "red" : "black")};
 `;
+
+export const Cursor = styled.span``;

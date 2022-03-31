@@ -29,18 +29,30 @@ export default function PaginationPage() {
 
   const { data, refetch } = useQuery(FETCH_BOARDS);
 
+  const [isActive, setIsActive] = useState(true);
+
   // 이전 10 페이지 클릭함수
   const onClickPrevPage = () => {
-    if (startPage === 1) return;
-    setStartPage((prev) => prev - 10);
-    refetch({ page: startPage - 10 });
+    if (startPage === 1) {
+      setIsActive(false);
+      return;
+    } else {
+      setIsActive(true);
+      setStartPage((prev) => prev - 10);
+      refetch({ page: startPage - 10 });
+    }
   };
 
   // 다음 10페이지 클릭함수
   const onClickNextPage = () => {
-    if (!(startPage + 10 <= lastPage)) return;
-    setStartPage((prev) => prev + 10);
-    refetch({ page: startPage + 10 });
+    if (!(startPage + 10 <= lastPage)) {
+      setIsActive(false);
+      return;
+    } else {
+      setIsActive(true);
+      setStartPage((prev) => prev + 10);
+      refetch({ page: startPage + 10 });
+    }
   };
 
   const onClickPage = (event) => {
@@ -57,7 +69,7 @@ export default function PaginationPage() {
         </S.MyRow>
       ))}
 
-      <span onClick={onClickPrevPage}> &lt; </span>
+      <S.Cursor onClick={onClickPrevPage}> &lt; </S.Cursor>
 
       {new Array(10).fill(1).map(
         (_, index) =>
@@ -74,7 +86,7 @@ export default function PaginationPage() {
           )
       )}
 
-      <span onClick={onClickNextPage}> &gt; </span>
+      <S.Cursor onClick={onClickNextPage}> &gt; </S.Cursor>
     </div>
   );
 }
