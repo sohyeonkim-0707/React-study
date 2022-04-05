@@ -15,21 +15,20 @@ export default function lifecyclePage() {
 
   useEffect(() => {
     alert("Changed!!");
-  }, []);
+  }, [isChange]);
 
   //나갈때
   useEffect(() => {
     return () => {
       alert("Bye!!");
     };
-  }, []);
+  }, [router]);
 
   const onClickChange = () => {
     setIsChange(true);
   };
 
   const onClickMove = () => {
-    setIsChange(true);
     router.push("/");
   };
 
