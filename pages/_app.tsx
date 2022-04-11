@@ -7,6 +7,7 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 import { ApolloLink } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import { AppProps } from "next/app";
+import { RecoilRoot } from "recoil";
 
 function MyApp({ Component, pageProps }: AppProps) {
   //세팅 함수 부분
@@ -21,10 +22,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <RecoilRoot>
+        <Global styles={globalStyles} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </RecoilRoot>
     </ApolloProvider>
   );
 }
