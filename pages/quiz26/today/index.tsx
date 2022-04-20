@@ -37,6 +37,8 @@ const Wrapper = styled.div`
 export default function BasketPage() {
   const { data } = useQuery(FETCH_BOARDS, {});
   const [isToday, setIsToday] = useState([]);
+
+  // 날짜함수 만들어주기
   const getDate = new Date();
   const yyyy = getDate.getFullYear();
   const mm = getDate.getMonth() + 1;
@@ -45,12 +47,11 @@ export default function BasketPage() {
   const today = `${yyyy}-${mm}-${dd}`;
 
   // console.log("today", today); 날짜 찍어보기
-  // const bbb = localStorage.setItem("getDate");
 
   useEffect(() => {
     const todayProduct = JSON.parse(localStorage.getItem(today) || "[]");
     setIsToday(todayProduct);
-  });
+  }, []);
 
   const onClickBasket = (el) => () => {
     console.log(el);
