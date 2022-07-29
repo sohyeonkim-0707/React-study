@@ -14,15 +14,6 @@ const Body = styled.div`
   height: 500px;
 `;
 
-// 사이드바는 여기에 직접 이모션 적용
-const LayoutSidebar = styled.div`
-  width: 400px;
-  height: 500px;
-  background-color: skyblue;
- 
-  }
-`;
-
 interface ILayoutProps {
   children: ReactNode;
 }
@@ -31,13 +22,9 @@ export default function Layout(props: ILayoutProps) {
   return (
     <>
       <LayoutHeader />
-      <LayoutBanner />
-      <LayoutNavigation />
       <BodyWrapper>
-        <LayoutSidebar> Sidebar </LayoutSidebar>
         <Body>{props.children}</Body>
       </BodyWrapper>
-      <LayoutFooter />
     </>
   );
 }

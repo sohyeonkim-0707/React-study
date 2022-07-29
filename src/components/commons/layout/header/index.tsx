@@ -4,11 +4,11 @@ import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
   height: 50px;
-  background-color: red;
-
-  }
+  background-color: beige;
+  font-size: 30px;
+  text-align: center;
 `;
 
 export default function LayoutHeader() {
-  return <Wrapper>Header</Wrapper>;
+  return <Wrapper>React</Wrapper>;
 }
