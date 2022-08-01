@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 
 const App = () => {
   const [count, setCount] = useState(1);
-  // onst [renderCount, setRenderCount] = useState(1);
+  // const [renderCount, setRenderCount] = useState(1);
 
   const renderCount = useRef(1);
 
